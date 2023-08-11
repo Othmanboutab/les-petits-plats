@@ -1,0 +1,74 @@
+@use "../base/variables" as *;
+
+.card {
+    width: 380px;
+    height: 364px;
+    border-radius: 5px;
+
+    .image {
+        background-color: $dark-gray;
+        height: 182px;
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .detail {
+        background-color: $gray;
+        min-height: 182px;
+        padding: 15px;
+
+        .name-time {
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+
+            .time-container {
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+
+                .time {
+                    margin: 0 5px;
+                }
+
+            }
+        }
+
+        .ingredients-desc {
+            display: flex;
+
+            .ingredients {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                font-size: 12px;
+                line-height: 12px;
+                padding-right: 5px;
+
+                .ingredient {
+                    font-weight: 700;
+                }
+
+                .quantity,
+                .unit {
+                    font-weight: 400;
+                }
+
+
+            }
+
+            .description {
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+                font-size: 12px;
+                line-height: 12px;
+                padding-left: 5px;
+            }
+        }
+    }
+}

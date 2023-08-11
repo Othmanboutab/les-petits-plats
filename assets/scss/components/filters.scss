@@ -1,0 +1,65 @@
+@use "../base/variables" as *;
+
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+
+    #selectedFilters {
+        display: flex;
+        gap: 20px;
+
+        & button {
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 5px;
+            color: $white;
+            display: flex;
+            gap: 20px;
+
+            & i {
+                font-size: 18px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .filters-container {
+        display: flex;
+        gap: 20px;
+
+        & select {
+            outline: none;
+            border: none;
+            width: 170px;
+            height: 69px;
+            color: $white;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+        }
+
+        select *.option {
+            padding: 15px;
+        }
+
+        #filterIngredient {
+            background-color: $blue;
+        }
+
+        #filterAppliance {
+            background-color: $green;
+        }
+
+        #filterUtensils {
+            background-color: $red;
+        }
+    }
+
+
+}
