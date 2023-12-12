@@ -4,7 +4,7 @@ import {
   getAllUstensils,
   getAllAppliances,
 } from "./data.js";
-import { recipes } from "../../data/recipes.js";
+import recipes from "../../data/recipes.js";
 import { updateCustomFiltre, updateOptionsList } from "./update.js";
 import { createCards } from "./cards.js";
 
@@ -42,7 +42,7 @@ export function createCustomFiltre(defaultValue, placeholder, data, bgColor) {
   updateOptionsList(optionsList, data, 30, input); // Affichez initialement seulement 10 options
 
   // Ajoutez un gestionnaire d'événements pour ouvrir/fermer la liste d'options
-  input.addEventListener("click", function () {
+  input.addEventListener("click", () => {
     customSelect.classList.toggle("open");
   });
 
@@ -63,16 +63,16 @@ export function createCustomFiltre(defaultValue, placeholder, data, bgColor) {
     updateOptionsList(optionsList, filtreedData, 30, input);
   });
 
-  document.addEventListener("click", function (event) {
+  document.addEventListener("click", (event) => {
     if (!customSelect.contains(event.target)) {
       customSelect.classList.remove("open");
     }
   });
 }
 export function applyFiltres() {
-  let ingredientsFiltre = getFiltreValue("#Ingredients input");
-  let applianceFiltre = getFiltreValue("#Appliance input");
-  let ustensilsFiltre = getFiltreValue("#Ustensils input");
+  const ingredientsFiltre = getFiltreValue("#Ingredients input");
+  const applianceFiltre = getFiltreValue("#Appliance input");
+  const ustensilsFiltre = getFiltreValue("#Ustensils input");
 
   addFiltre(ingredientsFiltre, "Ingredients");
   addFiltre(applianceFiltre, "Appliance");
@@ -151,9 +151,9 @@ export function resetFiltres(filtre) {
   }
 }
 export function updateFilteredRecipes(searchValue) {
-  let ingredientsFiltre = getFiltreValue("#Ingredients input");
-  let applianceFiltre = getFiltreValue("#Appliance input");
-  let ustensilsFiltre = getFiltreValue("#Ustensils input");
+  const ingredientsFiltre = getFiltreValue("#Ingredients input");
+  const applianceFiltre = getFiltreValue("#Appliance input");
+  const ustensilsFiltre = getFiltreValue("#Ustensils input");
 
   const normalizedSearchValue = searchValue || "";
 

@@ -1776,4 +1776,4 @@ const recipes = [
   },
 ];
 
-export { recipes };
+export default recipes;

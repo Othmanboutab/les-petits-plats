@@ -1,4 +1,4 @@
-import { recipes } from "../../data/recipes.js";
+import recipes from "../../data/recipes.js";
 
 export function getAllIngredients() {
   const allIngredients = [];
@@ -6,11 +6,11 @@ export function getAllIngredients() {
   // Parcours de chaque recette
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-    const ingredients = recipe.ingredients;
+    const { ingredients } = recipe;
 
     // Parcours de chaque ingrédient dans la recette
     for (let j = 0; j < ingredients.length; j++) {
-      const ingredient = ingredients[j].ingredient;
+      const { ingredient } = ingredients[j];
       if (ingredient && !allIngredients.includes(ingredient.toLowerCase())) {
         allIngredients.push(ingredient.toLowerCase());
       }
@@ -21,11 +21,11 @@ export function getAllIngredients() {
 }
 
 export function getAllUstensils() {
-  let allUstensils = [];
+  const allUstensils = [];
 
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-    const ustensils = recipe.ustensils;
+    const { ustensils } = recipe;
 
     if (ustensils) {
       // Parcours de chaque ustensil dans la recette
@@ -47,7 +47,7 @@ export function getAllAppliances() {
   // Parcours de chaque recette
   for (let i = 0; i < recipes.length; i++) {
     const recipe = recipes[i];
-    const appliance = recipe.appliance;
+    const { appliance } = recipe;
 
     if (appliance) {
       // Ajout de l'appliance au tableau allAppliances s'il n'est pas déjà présent
