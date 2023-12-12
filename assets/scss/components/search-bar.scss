@@ -8,6 +8,12 @@
     align-items: center;
     border-radius: 5px;
 
+    @media only screen and (max-width: 767px) {
+        width: 90%;
+        margin: auto;
+        padding: 0 10px;
+    }
+
     input {
         width: 95%;
         height: 100%;
