@@ -8,13 +8,12 @@ export function updateCustomFiltre(selector, placeholder, data) {
     const optionsList = customFilter.querySelector('ul');
     updateOptionsList(optionsList, data, 30, input);
 }
+
 export function updateOptionsList(listElement, optionsData, limit, input) {
     listElement.innerHTML = '';
     const customSelect = document.querySelector('.custom-select');
 
-    for (let i = 0; i < Math.min(optionsData.length, limit); i++) {
-        const item = optionsData[i];
-
+    optionsData.slice(0, limit).forEach(item => {
         const option = document.createElement('li');
         option.textContent = item;
         option.setAttribute('data-value', item.toLowerCase());
@@ -26,5 +25,5 @@ export function updateOptionsList(listElement, optionsData, limit, input) {
             customSelect.classList.remove('open');
             applyFiltres();
         });
-    }
+    });
 }

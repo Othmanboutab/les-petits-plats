@@ -48,17 +48,10 @@ export function createCustomFiltre(defaultValue, placeholder, data, bgColor) {
     input.addEventListener('input', function () {
         const searchValue = this.value.toLowerCase();
 
-        const filtreedData = [];
-
-        for (let i = 0; i < data.length; i++) {
-            const itemValue = data[i].toLowerCase();
-            if (itemValue.includes(searchValue)) {
-                filtreedData.push(data[i]);
-            }
-        }
+        const filteredData = data.filter(item => item.toLowerCase().includes(searchValue));
 
         // Mettez à jour la liste des options en fonction des résultats filtrés
-        updateOptionsList(optionsList, filtreedData, 30, input);
+        updateOptionsList(optionsList, filteredData, 30, input);
     });
 
     document.addEventListener('click', function (event) {
@@ -108,13 +101,7 @@ export function addFiltre(filtre, label) {
     const indexToRemove = appliedFiltres.findIndex(applied => applied.label === label);
 
     if (indexToRemove !== -1) {
-        const newArray = [];
-        for (let i = 0; i < appliedFiltres.length; i++) {
-            if (i !== indexToRemove) {
-                newArray.push(appliedFiltres[i]);
-            }
-        }
-        appliedFiltres = newArray;
+        appliedFiltres = appliedFiltres.filter((_, i) => i !== indexToRemove);
     }
 
     if (filtre && !filtresToExclude.includes(filtre)) {
@@ -134,17 +121,7 @@ export function resetFiltres(filtre) {
         document.querySelector(selector).value = "";
     }
 
-    const index = appliedFiltres.findIndex(f => f?.filtreValue === filtreValue);
-
-    if (index !== -1) {
-        const newArray = [];
-        for (let i = 0; i < appliedFiltres.length; i++) {
-            if (i !== index) {
-                newArray.push(appliedFiltres[i]);
-            }
-        }
-        appliedFiltres = newArray;
-    }
+    appliedFiltres = appliedFiltres.filter(f => f?.filtreValue !== filtreValue);
 }
 export function updateFilteredRecipes(searchValue) {
     let ingredientsFiltre = getFiltreValue("#Ingredients input");
@@ -153,11 +130,7 @@ export function updateFilteredRecipes(searchValue) {
 
     const normalizedSearchValue = searchValue || "";
 
-    const filteredRecipes = [];
-
-    for (let i = 0; i < recipes.length; i++) {
-        const recipe = recipes[i];
-
+    const filteredRecipes = recipes.filter(recipe => {
         const matchIngredient =
             ingredientsFiltre === "ingredients" ||
             recipe.ingredients.some(ingredient =>
@@ -177,52 +150,45 @@ export function updateFilteredRecipes(searchValue) {
                 ? normalizedSearchValue === "" || recipe.name.toLowerCase().includes(normalizedSearchValue)
                 : true;
 
-        if (matchIngredient && matchAppliance && matchUstensils && matchSearch) {
-            filteredRecipes.push(recipe);
-        }
-    }
+        return matchIngredient && matchAppliance && matchUstensils && matchSearch;
+    });
+
     updateFiltres(filteredRecipes);
 
-    if (!filteredRecipes.length) {
-        const notFoundContainer = document.querySelector('.not-found-container')
-        notFoundContainer.style.display = "flex"
-    }
+    const notFoundContainer = document.querySelector('.not-found-container');
+    notFoundContainer.style.display = filteredRecipes.length ? "none" : "flex";
+
     createCards(filteredRecipes);
 }
 export function updateFiltres(filteredRecipes) {
-
-    const uniqueIngredientsSet = new Set();
-
-    for (let i = 0; i < filteredRecipes.length; i++) {
-        const recipe = filteredRecipes[i];
-        for (let j = 0; j < recipe.ingredients.length; j++) {
-            uniqueIngredientsSet.add(recipe.ingredients[j].ingredient.toLowerCase());
-        }
-    }
-
-    const uniqueIngredients = Array.from(uniqueIngredientsSet);
-
-    // uniqueAppliance
+    const uniqueIngredients = [];
     const uniqueAppliance = [];
-    for (let i = 0; i < filteredRecipes.length; i++) {
-        uniqueAppliance.push(filteredRecipes[i].appliance);
-    }
+    const uniqueUstensils = [];
 
-    // uniqueUstensils
-    const uniqueUstensilsSet = new Set();
+    filteredRecipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            const lowerCasedIngredient = ingredient.ingredient.toLowerCase();
+            if (!uniqueIngredients.includes(lowerCasedIngredient)) {
+                uniqueIngredients.push(lowerCasedIngredient);
+            }
+        });
 
-    for (let i = 0; i < filteredRecipes.length; i++) {
-        const recipe = filteredRecipes[i];
-        for (let j = 0; j < recipe.ustensils.length; j++) {
-            uniqueUstensilsSet.add(recipe.ustensils[j]);
+        const lowerCasedAppliance = recipe.appliance.toLowerCase();
+        if (!uniqueAppliance.includes(lowerCasedAppliance)) {
+            uniqueAppliance.push(lowerCasedAppliance);
         }
-    }
 
-    const uniqueUstensils = Array.from(uniqueUstensilsSet);
+        recipe.ustensils.forEach(ustensil => {
+            if (!uniqueUstensils.includes(ustensil)) {
+                uniqueUstensils.push(ustensil);
+            }
+        });
+    });
 
     updateCustomFiltre("#Ingredients", "Ingredients", uniqueIngredients);
     updateCustomFiltre("#Appliance", "Appliance", uniqueAppliance);
     updateCustomFiltre("#Ustensils", "Ustensils", uniqueUstensils);
+
 }
 export function addButton(container, filtre) {
     const { filtreValue, label } = filtre;
@@ -254,7 +220,7 @@ export function addButton(container, filtre) {
 export function showSelectedFiltres() {
     selectedFiltresDiv.innerHTML = "";
 
-    for (let i = 0; i < appliedFiltres.length; i++) {
-        addButton(selectedFiltresDiv, appliedFiltres[i]);
-    }
+    appliedFiltres.forEach(appliedFiltre => {
+        addButton(selectedFiltresDiv, appliedFiltre);
+    });
 }
