@@ -2,7 +2,8 @@
   "name": "les_petits_plats",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass-dev": "sass --watch --style=compressed assets/scss/main.scss:assets/css/style.css"
+    "sass-dev": "sass --watch --style=compressed assets/scss/main.scss:assets/css/style.css",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,html,scss}\""
   },
   "type": "module",
   "devDependencies": {
