@@ -1,26 +1,32 @@
 @use "../base/variables" as *;
 
 .search-bar-container {
+  background-color: $gray;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+
+  @media only screen and (max-width: 767px) {
+    width: 90%;
+    margin: auto;
+    padding: 0 10px;
+  }
+
+  input {
+    width: 95%;
+    height: 100%;
+    border: none;
     background-color: $gray;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
+    font-size: 18px;
 
-    input {
-        width: 95%;
-        height: 100%;
-        border: none;
-        background-color: $gray;
-        font-size: 18px;
-
-        &:focus {
-            outline: none;
-        }
+    &:focus {
+      outline: none;
     }
+  }
 
-    i {
-        font-size: 25px;
-    }
+  i {
+    font-size: 25px;
+  }
 }

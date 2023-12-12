@@ -54,6 +54,12 @@
         column-count: 3;
         column-gap: 20px;
         padding: 5px;
+
+        @media only screen and (max-width: 767px) {
+          column-count: auto;
+          column-gap: 0;
+          width: 100%;
+        }
       }
 
       & .arrow {
@@ -89,12 +95,12 @@
   }
 }
 
-#selected-filtres-list{
+#selected-filtres-list {
   margin-top: 20px;
   display: flex;
   gap: 30px;
 
-  .tag{
+  .tag {
     background-color: transparent;
     border: none;
     padding: 10px;
