@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Les petits plats</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="shortcut icon" href="./assets/logo/logo_lespetitsplats.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:wght@100;400&display=swap"
-        rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="https://kit.fontawesome.com/40e0f0e9c2.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/40e0f0e9c2.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="./js/index.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="main">
-        <div class="logo-container">
-            <img src="./assets/logo/logo_lespetitsplats.png" class="logo" width="268" height="93" />
-        </div>
-        <div class="search-bar-container">
-            <input type="text" id="search-bar" placeholder="Rechercher une recette" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <div class="filters">
-            <div id="selectedFilters"></div>
-            <div class="filters-container">
-                <div class="filter filter-ingredient"></div>
-                <div class="filter filter-appliance"></div>
-                <div class="filter filter-utensils"></div>
-            </div>
-        </div>
-        <div class="cards-container"></div>
-    </div>
-</body>
+      <div class="logo-container">
+        <img
+          src="./assets/logo/logo_lespetitsplats.png"
+          class="logo"
+          width="268"
+          height="93"
+        />
+      </div>
+      <div class="search-bar-container">
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Rechercher une recette"
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
 
+      <div id="selected-filtres-list"></div>
+      <div id="filtres"></div>
+      <div class="cards-container"></div>
+      <div class="not-found-container">
+        <span class="not-found-text">Aucune recette n'a été trouvée, veuillez essayer à nouveau.</span>
+      </div>
+    </div>
+  </body>
 </html>

@@ -2,6 +2,7 @@ export function createCards(recipes) {
     // Récupération du conteneur des cartes
     const cardsContainer = document.querySelector(".cards-container");
 
+    cardsContainer.innerHTML = '';
     // Parcours de chaque recette
     for (let i = 0; i < recipes.length; i++) {
         const recipe = recipes[i];

@@ -22,7 +22,7 @@ export function getAllIngredients() {
 
 }
 
-export function getAllUtensils() {
+export function getAllUstensils() {
     let allUstensils = [];
 
     for (let i = 0; i < recipes.length; i++) {
