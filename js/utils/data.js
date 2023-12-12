@@ -1,13 +1,13 @@
-import { recipes } from "../../data/recipes.js";
+import recipes from '../../data/recipes.js';
 
 export function getAllIngredients() {
   const allIngredients = [];
 
   recipes.forEach((recipe) => {
-    const ingredients = recipe.ingredients;
+    const { ingredients } = recipe;
 
     ingredients.forEach((ingredientData) => {
-      const ingredient = ingredientData.ingredient;
+      const { ingredient } = ingredientData;
       if (ingredient && !allIngredients.includes(ingredient.toLowerCase())) {
         allIngredients.push(ingredient.toLowerCase());
       }
@@ -18,10 +18,10 @@ export function getAllIngredients() {
 }
 
 export function getAllUstensils() {
-  let allUstensils = [];
+  const allUstensils = [];
 
   recipes.forEach((recipe) => {
-    const ustensils = recipe.ustensils;
+    const { ustensils } = recipe;
 
     if (ustensils) {
       ustensils.forEach((ustensil) => {
@@ -39,7 +39,7 @@ export function getAllAppliances() {
   const allAppliances = [];
 
   recipes.forEach((recipe) => {
-    const appliance = recipe.appliance;
+    const { appliance } = recipe;
     if (appliance && !allAppliances.includes(appliance)) {
       allAppliances.push(appliance);
     }

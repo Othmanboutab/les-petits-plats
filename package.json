@@ -3,10 +3,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass-dev": "sass --watch --style=compressed assets/scss/main.scss:assets/css/style.css",
-    "format": "prettier --write \"**/*.{js,jsx,json,md,html,scss}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md,html,scss}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "type": "module",
   "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0",
     "sass": "^1.65.1"
   }
 }
