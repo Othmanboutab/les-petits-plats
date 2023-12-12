@@ -16,5 +16,5 @@ Respecter le design de la maquette [Figma](https://www.figma.com/file/xqeE1ZKlHU
 
 ## Informations complémentaires 
 
-* Résultat [JSBENCH]([https://jsben.ch/I9eTK](https://jsben.ch/rayW4))
+* Résultat [JSBENCH](https://jsben.ch/rayW4)
 * code réalisé sans framework JavaScript.
