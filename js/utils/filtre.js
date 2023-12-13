@@ -247,7 +247,7 @@ function resetFiltres(filtreValue, label) {
   }
   appliedFiltres = updatedAppliedFiltres;
 }
-function createButton(value, bgColor, label) {
+function createButton(buttonsContainer, value, bgColor, label) {
   const button = document.createElement("button");
   button.textContent = capitalize(value);
   button.classList.add("tag");
@@ -259,6 +259,7 @@ function createButton(value, bgColor, label) {
   deleteIcon.addEventListener("click", () => {
     resetFiltres(value, label);
     button.remove();
+    buttonsContainer.remove();
     updateFilteredRecipes();
   });
 
@@ -274,7 +275,7 @@ function addButton(container, filtre) {
 
   for (let i = 0; i < filtreValue.length; i++) {
     const value = filtreValue[i];
-    const button = createButton(value, currentBgColor, label);
+    const button = createButton(buttonsContainer, value, currentBgColor, label);
     buttonsContainer.appendChild(button);
   }
 
