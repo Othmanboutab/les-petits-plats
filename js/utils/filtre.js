@@ -11,7 +11,7 @@ let selectedValues = [];
 export function setupFiltres() {
   customFilters.forEach(createCustomFiltre);
 }
-export function updateFilteredRecipes(searchValue) {
+export function updateFilteredRecipes(searchValue, data) {
   const filters = {
     ingredients: selectedValues?.filter(
       (value) => value?.selectedId === 'ingredients',
@@ -26,7 +26,7 @@ export function updateFilteredRecipes(searchValue) {
 
   const normalizedSearchValue = (searchValue || '').toLowerCase();
 
-  const filteredRecipes = recipes?.filter((recipe) => {
+  const filteredRecipes = data?.filter((recipe) => {
     const matchIngredient = !filters.ingredients.length
       || filters.ingredients.every((filter) => (
         filter.selectedValue === 'ingredients'
@@ -147,7 +147,7 @@ function createButton(buttonsContainer, value, bgColor, label) {
     resetFiltres(value, label);
     button.remove();
     buttonsContainer.remove();
-    updateFilteredRecipes();
+    updateFilteredRecipes('', recipes);
   });
 
   button.appendChild(deleteIcon);
@@ -216,7 +216,7 @@ function applyFiltres() {
   });
 
   showSelectedFiltres();
-  updateFilteredRecipes();
+  updateFilteredRecipes('', recipes);
 }
 function updateOptionsList(listElement, optionsData, limit, input) {
   listElement.innerHTML = '';
