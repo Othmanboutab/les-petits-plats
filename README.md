@@ -16,3 +16,4 @@ Respecter le design de la maquette [Figma](https://www.figma.com/file/xqeE1ZKlHU
 
 - Réaliser deux algorithmes distincts, le premier avec une boucle native (for, while...) et l'autre avec une boucle fonctionnelle (forEach, map).
 - Définir quel algorithme fonctionne le mieux et donne le plus de résultats avec [JSBENCH](https://jsben.ch/I9eTK).
+- Validateur [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fothmanboutab.github.io%2Fles-petits-plats%2F).
