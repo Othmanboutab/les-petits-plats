@@ -13,7 +13,7 @@ export function setupFiltres() {
     createCustomFiltre(customFilters[i]);
   }
 }
-export function updateFilteredRecipes(searchValue) {
+export function updateFilteredRecipes(searchValue, data) {
   const filters = {
     ingredients: [],
     appliance: [],
@@ -37,9 +37,9 @@ export function updateFilteredRecipes(searchValue) {
   const normalizedSearchValue = (searchValue || "").toLowerCase();
 
   const filteredRecipes = [];
-  if (recipes) {
-    for (let i = 0; i < recipes.length; i++) {
-      const recipe = recipes[i];
+  if (data) {
+    for (let i = 0; i < data.length; i++) {
+      const recipe = data[i];
 
       const matchIngredient =
         !filters.ingredients.length ||
@@ -260,7 +260,7 @@ function createButton(buttonsContainer, value, bgColor, label) {
     resetFiltres(value, label);
     button.remove();
     buttonsContainer.remove();
-    updateFilteredRecipes();
+    updateFilteredRecipes('', recipes);
   });
 
   button.appendChild(deleteIcon);
@@ -320,7 +320,7 @@ function applyFiltres() {
   }
 
   showSelectedFiltres();
-  updateFilteredRecipes();
+  updateFilteredRecipes('', recipes);
 }
 function updateOptionsList(listElement, optionsData, limit, input) {
   listElement.innerHTML = "";
