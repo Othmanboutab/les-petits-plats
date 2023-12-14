@@ -13,7 +13,7 @@ export function setupFiltres() {
     createCustomFiltre(customFilters[i]);
   }
 }
-export function updateFilteredRecipes(searchValue, data) {
+export function handleRecipeFilteringAndDisplay(searchValue, data) {
   const filters = {
     ingredients: [],
     appliance: [],
@@ -125,7 +125,7 @@ export function updateFilteredRecipes(searchValue, data) {
     }
   }
 
-  updateFiltres(filteredRecipes);
+  updateFiltersFromRecipes(filteredRecipes);
 
   const notFoundContainer = document.querySelector(".not-found-container");
   notFoundContainer.style.display = filteredRecipes.length ? "none" : "flex";
@@ -272,7 +272,7 @@ function createButton(buttonsContainer, value, bgColor, label) {
     resetFiltres(value, label);
     button.remove();
     buttonsContainer.remove();
-    updateFilteredRecipes('', recipes);
+    handleRecipeFilteringAndDisplay('', recipes);
   });
 
   button.appendChild(deleteIcon);
@@ -332,7 +332,7 @@ function applyFiltres() {
   }
 
   showSelectedFiltres();
-  updateFilteredRecipes('', recipes);
+  handleRecipeFilteringAndDisplay('', recipes);
 }
 function updateOptionsList(listElement, optionsData, limit, input) {
   listElement.innerHTML = "";
@@ -417,7 +417,7 @@ function updateCustomFiltre(selector, placeholder, data) {
   const optionsList = customFilter.querySelector("ul");
   updateOptionsList(optionsList, options, 30, input);
 }
-function updateFiltres(filteredRecipes) {
+function updateFiltersFromRecipes(filteredRecipes) {
   const uniqueFilters = {
     Ingredients: new Set(),
     Appliance: new Set(),
