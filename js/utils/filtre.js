@@ -50,10 +50,16 @@ export function updateFilteredRecipes(searchValue, data) {
             === filterUstensil.selectedValue.toLowerCase(),
         )
       ));
-    const matchSearch = normalizedSearchValue.length > 3
-      ? normalizedSearchValue === ''
-      || recipe.name.toLowerCase().includes(normalizedSearchValue)
-      : true;
+    const matchSearch =
+      normalizedSearchValue.length > 3
+        ? normalizedSearchValue === "" ||
+        recipe.name.toLowerCase().includes(normalizedSearchValue) ||
+        recipe.description.toLowerCase().includes(normalizedSearchValue) ||
+        recipe.ingredients.some(
+          (ingredient) =>
+            ingredient.ingredient.toLowerCase().includes(normalizedSearchValue)
+        )
+        : true;
 
     return matchIngredient && matchAppliance && matchUstensils && matchSearch;
   });
