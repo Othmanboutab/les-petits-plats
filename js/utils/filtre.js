@@ -104,7 +104,19 @@ export function updateFilteredRecipes(searchValue, data) {
       const matchSearch =
         normalizedSearchValue.length > 3
           ? normalizedSearchValue === "" ||
-            recipe.name.toLowerCase().includes(normalizedSearchValue)
+          recipe.name.toLowerCase().includes(normalizedSearchValue) ||
+          recipe.description.toLowerCase().includes(normalizedSearchValue) ||
+          (() => {
+            let found = false;
+            for (let i = 0; i < recipe.ingredients.length; i++) {
+              const ingredient = recipe.ingredients[i].ingredient.toLowerCase();
+              if (ingredient.includes(normalizedSearchValue)) {
+                found = true;
+                break;
+              }
+            }
+            return found;
+          })()
           : true;
 
       if (matchIngredient && matchAppliance && matchUstensils && matchSearch) {
