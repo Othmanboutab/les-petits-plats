@@ -60,7 +60,7 @@ export function createCards(recipes) {
                 <span class="ingredient">${ingredient?.ingredient}</span>
                 ${
                   ingredient?.quantity
-                    ? `:<span class="quantity">${ingredient?.quantity}</span>`
+        ? `: <span class="quantity">${ingredient?.quantity}</span>`
                     : ""
                 }
                 ${

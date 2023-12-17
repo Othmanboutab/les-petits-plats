@@ -184,7 +184,7 @@ function createCustomFiltre(props) {
   updateOptionsList(optionsListSelector, options, 30, input); // Affichez initialement seulement 30 options
 
   // Ajoutez un gestionnaire d'événements pour ouvrir/fermer la liste d'options
-  input.addEventListener("click", () => {
+  customSelect.addEventListener("click", () => {
     customSelect.classList.toggle("open");
   });
 
